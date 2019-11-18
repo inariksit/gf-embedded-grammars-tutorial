@@ -1,4 +1,3 @@
-  module Main where
 -- This program transforms a sentence of the form
 -- I like me ; you see you ; John asks John
 -- into the reflexive versions∷
@@ -6,7 +5,7 @@
 -- The subject and the object must be the same abstract syntax function.
 
   import PGF
-  import MiniLang   -- generated automatically: gf -make --output-format=haskell MiniLangEng.gf
+  import MiniLang   -- generated automatically: gf -make --output-format=haskell resource/MiniLangEng.gf
 
   transfer :: Tree -> Tree
   transfer = gf . toReflexive . fg
@@ -42,7 +41,6 @@
 
   loop :: (String -> String) -> IO ()
   loop trans = do
-    putStr "> "
     s <- getLine
     if s == "quit" then putStrLn "bye" else do
       putStrLn $ trans s
