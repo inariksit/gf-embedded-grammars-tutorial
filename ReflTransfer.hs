@@ -1,6 +1,6 @@
 -- This program transforms a sentence of the form
 -- I like me ; you see you ; John asks John
--- into the reflexive versions∷
+-- into the reflexive versions:
 -- I like myself ; you see yourself ; John asks himself
 -- The subject and the object must be the same abstract syntax function.
 
