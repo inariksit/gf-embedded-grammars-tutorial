@@ -39,7 +39,7 @@ abstract MiniGrammar = {
 -- Verb
     UseV      : V   -> VP ;             -- sleep
     ComplV2   : V2  -> NP -> VP ;       -- love it  ---s
-    ReflV2    : V2 -> VP ;              -- use itself -- Added by IL for demonstrating semantic transfer
+    ReflV2    : V2 -> VP ;              -- use itself -- Added by IL for demonstrating transfer
     UseAP     : AP  -> VP ;             -- be small ---s
     AdvVP     : VP -> Adv -> VP ;       -- sleep here
 
