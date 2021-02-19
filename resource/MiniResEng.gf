@@ -1,4 +1,4 @@
-resource MiniResEng = open Prelude in {
+resource MiniResEng = {
 
 param
   Number = Sg | Pl ;
@@ -50,7 +50,7 @@ oper
 
   smartVerb : Str -> Verb = \inf ->
      mkVerb inf ((mkN inf).s ! Pl) ;
- 
+
   mkV = overload {
     mkV : Str -> Verb = smartVerb ;
     mkV : (inf,pres : Str) -> Verb = mkVerb ;
@@ -85,6 +85,8 @@ oper
 
  param
    GVForm = VF VForm | PresSg1 | PresPl ;
+   Bool = True | False ;
+
 
  oper
    verb2gverb : Verb -> GVerb = \v -> {s =

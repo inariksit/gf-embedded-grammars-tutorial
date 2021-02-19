@@ -1,5 +1,4 @@
-concrete MiniGrammarEng of MiniGrammar = open MiniResEng, Prelude in {
-
+concrete MiniGrammarEng of MiniGrammar = open MiniResEng in {
 
   lincat
     Utt = {s : Str} ;
@@ -53,16 +52,20 @@ concrete MiniGrammarEng of MiniGrammar = open MiniResEng, Prelude in {
       verb = verb2gverb v2 ;
       compl = \\a => v2.c ++ np.s ! Acc
       } ;
+    -- : V2 -> VP
     ReflV2 v2 = {
       verb = verb2gverb v2 ;
-      compl = table {
-                Agr Sg Per1 => "myself" ;
-                Agr Sg Per2 => "yourself" ;
-                Agr Sg Per3 => "itself" ; -- simplification, no human referent
-                Agr Pl Per1 => "ourselves" ;
-                Agr Pl Per2 => "yourselves" ;
-                Agr Pl Per3 => "themselves" } ;
+      compl =
+        let reflPron : Agreement => Str = table {
+              Agr Sg Per1 => "myself" ;
+              Agr Sg Per2 => "yourself" ;
+              Agr Sg Per3 => "itself" ; -- simplification, no human referent
+              Agr Pl Per1 => "ourselves" ;
+              Agr Pl Per2 => "yourselves" ;
+              Agr Pl Per3 => "themselves" } ;
+        in \\agr => v2.c ++ reflPron ! agr ;
       } ;
+
     UseAP ap = {
       verb = be_GVerb ;
       compl = \\a => ap.s
