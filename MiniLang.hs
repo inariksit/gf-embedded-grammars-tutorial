@@ -50,8 +50,7 @@ data GAP = GPositA GA
 
 data GAdv =
    GPrepNP GPrep GNP
- | Galready_Adv
- | Gnow_Adv
+ | LexAdv String
   deriving Show
 
 data GCN =
@@ -63,16 +62,11 @@ data GCl = GPredVP GNP GVP
   deriving Show
 
 data GConj =
-   Gand_Conj
- | Gor_Conj
+   LexConj String
   deriving Show
 
 data GDet =
-   GaPl_Det
- | Ga_Det
- | Gevery_Det
- | GthePl_Det
- | Gthe_Det
+   LexDet String
   deriving Show
 
 data GN =
@@ -87,8 +81,7 @@ data GNP =
   deriving Show
 
 data GPN =
-   Gjohn_PN
- | Gparis_PN
+   LexPN String
   deriving Show
 
 data GPol =
@@ -97,19 +90,11 @@ data GPol =
   deriving Show
 
 data GPrep =
-   Gin_Prep
- | Gon_Prep
- | Gwith_Prep
+   LexPrep String
   deriving Show
 
 data GPron =
-   Ghe_Pron
- | Gi_Pron
- | Gshe_Pron
- | Gthey_Pron
- | Gwe_Pron
- | GyouPl_Pron
- | GyouSg_Pron
+   LexPron String
   deriving Show
 
 data GS =
@@ -160,16 +145,13 @@ instance Gf GAP where
 
 instance Gf GAdv where
   gf (GPrepNP x1 x2) = mkApp (mkCId "PrepNP") [gf x1, gf x2]
-  gf Galready_Adv = mkApp (mkCId "already_Adv") []
-  gf Gnow_Adv = mkApp (mkCId "now_Adv") []
+  gf (LexAdv x) = mkApp (mkCId x) []
 
   fg t =
     case unApp t of
       Just (i,[x1,x2]) | i == mkCId "PrepNP" -> GPrepNP (fg x1) (fg x2)
-      Just (i,[]) | i == mkCId "already_Adv" -> Galready_Adv
-      Just (i,[]) | i == mkCId "now_Adv" -> Gnow_Adv
 
-
+      Just (i,[]) -> LexAdv (showCId i)
       _ -> error ("no Adv " ++ show t)
 
 instance Gf GCN where
@@ -195,33 +177,21 @@ instance Gf GCl where
       _ -> error ("no Cl " ++ show t)
 
 instance Gf GConj where
-  gf Gand_Conj = mkApp (mkCId "and_Conj") []
-  gf Gor_Conj = mkApp (mkCId "or_Conj") []
+  gf (LexConj x) = mkApp (mkCId x) []
 
   fg t =
     case unApp t of
-      Just (i,[]) | i == mkCId "and_Conj" -> Gand_Conj
-      Just (i,[]) | i == mkCId "or_Conj" -> Gor_Conj
 
-
+      Just (i,[]) -> LexConj (showCId i)
       _ -> error ("no Conj " ++ show t)
 
 instance Gf GDet where
-  gf GaPl_Det = mkApp (mkCId "aPl_Det") []
-  gf Ga_Det = mkApp (mkCId "a_Det") []
-  gf Gevery_Det = mkApp (mkCId "every_Det") []
-  gf GthePl_Det = mkApp (mkCId "thePl_Det") []
-  gf Gthe_Det = mkApp (mkCId "the_Det") []
+  gf (LexDet x) = mkApp (mkCId x) []
 
   fg t =
     case unApp t of
-      Just (i,[]) | i == mkCId "aPl_Det" -> GaPl_Det
-      Just (i,[]) | i == mkCId "a_Det" -> Ga_Det
-      Just (i,[]) | i == mkCId "every_Det" -> Gevery_Det
-      Just (i,[]) | i == mkCId "thePl_Det" -> GthePl_Det
-      Just (i,[]) | i == mkCId "the_Det" -> Gthe_Det
 
-
+      Just (i,[]) -> LexDet (showCId i)
       _ -> error ("no Det " ++ show t)
 
 instance Gf GN where
@@ -250,15 +220,12 @@ instance Gf GNP where
       _ -> error ("no NP " ++ show t)
 
 instance Gf GPN where
-  gf Gjohn_PN = mkApp (mkCId "john_PN") []
-  gf Gparis_PN = mkApp (mkCId "paris_PN") []
+  gf (LexPN x) = mkApp (mkCId x) []
 
   fg t =
     case unApp t of
-      Just (i,[]) | i == mkCId "john_PN" -> Gjohn_PN
-      Just (i,[]) | i == mkCId "paris_PN" -> Gparis_PN
 
-
+      Just (i,[]) -> LexPN (showCId i)
       _ -> error ("no PN " ++ show t)
 
 instance Gf GPol where
@@ -274,39 +241,21 @@ instance Gf GPol where
       _ -> error ("no Pol " ++ show t)
 
 instance Gf GPrep where
-  gf Gin_Prep = mkApp (mkCId "in_Prep") []
-  gf Gon_Prep = mkApp (mkCId "on_Prep") []
-  gf Gwith_Prep = mkApp (mkCId "with_Prep") []
+  gf (LexPrep x) = mkApp (mkCId x) []
 
   fg t =
     case unApp t of
-      Just (i,[]) | i == mkCId "in_Prep" -> Gin_Prep
-      Just (i,[]) | i == mkCId "on_Prep" -> Gon_Prep
-      Just (i,[]) | i == mkCId "with_Prep" -> Gwith_Prep
 
-
+      Just (i,[]) -> LexPrep (showCId i)
       _ -> error ("no Prep " ++ show t)
 
 instance Gf GPron where
-  gf Ghe_Pron = mkApp (mkCId "he_Pron") []
-  gf Gi_Pron = mkApp (mkCId "i_Pron") []
-  gf Gshe_Pron = mkApp (mkCId "she_Pron") []
-  gf Gthey_Pron = mkApp (mkCId "they_Pron") []
-  gf Gwe_Pron = mkApp (mkCId "we_Pron") []
-  gf GyouPl_Pron = mkApp (mkCId "youPl_Pron") []
-  gf GyouSg_Pron = mkApp (mkCId "youSg_Pron") []
+  gf (LexPron x) = mkApp (mkCId x) []
 
   fg t =
     case unApp t of
-      Just (i,[]) | i == mkCId "he_Pron" -> Ghe_Pron
-      Just (i,[]) | i == mkCId "i_Pron" -> Gi_Pron
-      Just (i,[]) | i == mkCId "she_Pron" -> Gshe_Pron
-      Just (i,[]) | i == mkCId "they_Pron" -> Gthey_Pron
-      Just (i,[]) | i == mkCId "we_Pron" -> Gwe_Pron
-      Just (i,[]) | i == mkCId "youPl_Pron" -> GyouPl_Pron
-      Just (i,[]) | i == mkCId "youSg_Pron" -> GyouSg_Pron
 
-
+      Just (i,[]) -> LexPron (showCId i)
       _ -> error ("no Pron " ++ show t)
 
 instance Gf GS where
@@ -338,6 +287,7 @@ instance Gf GV where
 
   fg t =
     case unApp t of
+
       Just (i,[]) -> LexV (showCId i)
       _ -> error ("no V " ++ show t)
 
