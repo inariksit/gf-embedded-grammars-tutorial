@@ -8,3 +8,11 @@ This repository contains code examples to complement my blog post on [embedding 
 > * Installation, other practicalities of the GF ecosystem
 > * Linguistically motivated example of tree manipulation
 > * Examples in both Haskell and Python (the examples are the same, so only knowing one is enough)
+
+
+## Advanced topics
+
+These topics are discussed in TODO:upcoming blog post. To see full self-contained examples, each with their own README file, go to the following directories.
+
+* Haskell bindings to the C runtime: [advanced-pgf2](advanced-pgf2) -- Minimal difference to the "basic" example
+* GADTs in the generated Haskell code: [advanced-gadts](advanced-gadts) -- Significant difference, a new way of doing tree transformations

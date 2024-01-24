@@ -1,0 +1,22 @@
+name: advanced-gadts
+version: 0.1
+homepage: https://github.com/inariksit/gf-embedded-grammars-tutorial
+author: Inari Listenmaa
+category: Natural Language Processing
+build-type: Simple
+extra-source-files: README.md
+cabal-version: >=1.10
+
+
+executable ReflTransferWithGADTs
+  hs-source-dirs:
+    .
+  main-is: ReflTransferWithGADTs.hs
+  other-modules:
+    MiniLang
+    -- Automatically generated from ../resource/MiniLang*
+  build-depends:
+    base,
+    gf,
+    mtl
+  default-language: Haskell2010
