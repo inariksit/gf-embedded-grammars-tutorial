@@ -1,4 +1,4 @@
-resolver: lts-20.26
+resolver: ghc-9.2.8
 
 packages:
 - .
