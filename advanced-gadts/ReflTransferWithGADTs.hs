@@ -21,7 +21,7 @@ toReflexive tree = case tree of
       else tree
 
   -- If argument tree doesn't match, apply toReflexive to all subtrees
-  x -> composOp toReflexive x
+  _ -> composOp toReflexive tree
 
 -- NB. this is not a valid solution for all possible trees,
 -- but getLex demonstrates the usage of composOpMonoid.
@@ -45,7 +45,7 @@ getLex tree = case tree of
 main :: IO ()
 main = do
   gr <- readPGF "../MiniLang.pgf"
-  putStrLn "Write your sentence here, I will transform it into reflexive, if it has the same subject and object"
+  putStrLn "Write your sentence here (e.g. 'I see me', 'John sees John'), I will transform it into reflexive, if it has the same subject and object"
   putStrLn "Write quit to exit."
   loop (translate transfer gr)
 
