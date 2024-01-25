@@ -12,7 +12,7 @@ This repository contains code examples to complement my blog post on [embedding 
 
 ## Advanced topics
 
-These topics are discussed in TODO:upcoming blog post. To see full self-contained examples, each with their own README file, go to the following directories.
+These topics are discussed in [the sequel blog post](https://inariksit.github.io/gf/2024/01/25/embedding-grammars-2.html). To see full self-contained examples, each with their own README file, go to the following directories.
 
 * Haskell bindings to the C runtime: [advanced-pgf2](advanced-pgf2) -- Minimal difference to the "basic" example
 * GADTs in the generated Haskell code: [advanced-gadts](advanced-gadts) -- Significant difference, a new way of doing tree transformations
