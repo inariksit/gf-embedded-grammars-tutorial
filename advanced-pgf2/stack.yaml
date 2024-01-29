@@ -9,4 +9,13 @@ local-bin-path: .
 extra-deps:
 - pgf2-1.3.0
 
+# Location of the C runtime
+extra-lib-dirs:
+- /usr/local/lib
+
+# path for the C runtime is also needed for the linker, see
+# https://ro-che.info/articles/2020-04-07-haskell-local-c-library
+ghc-options:
+  "$locals": -optl=-Wl,-rpath,/usr/local/lib
+
 allow-newer: true
