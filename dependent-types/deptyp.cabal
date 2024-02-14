@@ -1,0 +1,30 @@
+name: deptyp
+version: 0.1
+homepage: https://github.com/inariksit/gf-embedded-grammars-tutorial
+author: Inari Listenmaa
+category: Natural Language Processing
+build-type: Simple
+extra-source-files: README.md
+cabal-version: >=1.10
+
+
+executable testC
+  hs-source-dirs:
+    .
+  main-is: TestC.hs
+  other-modules:
+  build-depends:
+    base,
+    pgf2,
+    containers
+  default-language: Haskell2010
+
+executable testHS
+  hs-source-dirs:
+    .
+  main-is: TestHS.hs
+  other-modules:
+  build-depends:
+    base,
+    gf
+  default-language: Haskell2010
