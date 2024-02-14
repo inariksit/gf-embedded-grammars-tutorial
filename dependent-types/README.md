@@ -33,6 +33,23 @@ See the file `TestHS.hs`, and run `stack run testHS` to see its output.
   0 — 1
   ```
 - generateFrom `FromTo ?1 ?2 ?3` works as expected, we get all 15 correct spans.
+  ```
+    4 — 5 FromTo (Succ (Succ (Succ (Succ Zero)))) (Succ (Succ (Succ (Succ (Succ Zero))))) (LessS (Succ (Succ (Succ Zero))) (Succ (Succ (Succ (Succ Zero)))) (LessS (Succ (Succ Zero)) (Succ (Succ (Succ Zero))) (LessS (Succ Zero) (Succ (Succ Zero)) (LessS Zero (Succ Zero) (LessZ Zero)))))
+    3 — 5 FromTo (Succ (Succ (Succ Zero))) (Succ (Succ (Succ (Succ (Succ Zero))))) (LessS (Succ (Succ Zero)) (Succ (Succ (Succ (Succ Zero)))) (LessS (Succ Zero) (Succ (Succ (Succ Zero))) (LessS Zero (Succ (Succ Zero)) (LessZ (Succ Zero)))))
+    3 — 4 FromTo (Succ (Succ (Succ Zero))) (Succ (Succ (Succ (Succ Zero)))) (LessS (Succ (Succ Zero)) (Succ (Succ (Succ Zero))) (LessS (Succ Zero) (Succ (Succ Zero)) (LessS Zero (Succ Zero) (LessZ Zero))))
+    2 — 5 FromTo (Succ (Succ Zero)) (Succ (Succ (Succ (Succ (Succ Zero))))) (LessS (Succ Zero) (Succ (Succ (Succ (Succ Zero)))) (LessS Zero (Succ (Succ (Succ Zero))) (LessZ (Succ (Succ Zero)))))
+    2 — 4 FromTo (Succ (Succ Zero)) (Succ (Succ (Succ (Succ Zero)))) (LessS (Succ Zero) (Succ (Succ (Succ Zero))) (LessS Zero (Succ (Succ Zero)) (LessZ (Succ Zero))))
+    2 — 3 FromTo (Succ (Succ Zero)) (Succ (Succ (Succ Zero))) (LessS (Succ Zero) (Succ (Succ Zero)) (LessS Zero (Succ Zero) (LessZ Zero)))
+    1 — 5 FromTo (Succ Zero) (Succ (Succ (Succ (Succ (Succ Zero))))) (LessS Zero (Succ (Succ (Succ (Succ Zero)))) (LessZ (Succ (Succ (Succ Zero)))))
+    1 — 4 FromTo (Succ Zero) (Succ (Succ (Succ (Succ Zero)))) (LessS Zero (Succ (Succ (Succ Zero))) (LessZ (Succ (Succ Zero))))
+    1 — 3 FromTo (Succ Zero) (Succ (Succ (Succ Zero))) (LessS Zero (Succ (Succ Zero)) (LessZ (Succ Zero)))
+    1 — 2 FromTo (Succ Zero) (Succ (Succ Zero)) (LessS Zero (Succ Zero) (LessZ Zero))
+    0 — 5 FromTo Zero (Succ (Succ (Succ (Succ (Succ Zero))))) (LessZ (Succ (Succ (Succ (Succ Zero)))))
+    0 — 4 FromTo Zero (Succ (Succ (Succ (Succ Zero)))) (LessZ (Succ (Succ (Succ Zero))))
+    0 — 3 FromTo Zero (Succ (Succ (Succ Zero))) (LessZ (Succ (Succ Zero)))
+    0 — 2 FromTo Zero (Succ (Succ Zero)) (LessZ (Succ Zero))
+    0 — 1 FromTo Zero (Succ Zero) (LessZ Zero)
+    ```
 - Parsing (unary variant) works really weirdly: e.g. 0—5 works, but {1,2,3,4}—5 doesn't
 - Parsing (decimal variant) is broken in a different way. No matter what we parse, it returns the trees for 0—{1,10}.
 
