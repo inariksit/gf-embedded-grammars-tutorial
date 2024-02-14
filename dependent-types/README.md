@@ -32,7 +32,7 @@ See the file `TestHS.hs`, and run `stack run testHS` to see its output.
   1 — 2
   0 — 1
   ```
-- generateFrom works as expected, we get all 15 correct spans.
+- generateFrom `FromTo ?1 ?2 ?3` works as expected, we get all 15 correct spans.
 - Parsing (unary variant) works really weirdly: e.g. 0—5 works, but {1,2,3,4}—5 doesn't
 - Parsing (decimal variant) is broken in a different way. No matter what we parse, it returns the trees for 0—{1,10}.
 
